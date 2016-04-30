@@ -1,8 +1,9 @@
 import http.client, urllib.parse, json
-import argparse
 import os
 import sys
 import time
+
+NUM_FILES_TO_AGGREGATE = 2
 
 def main():
     #Note: Sign up at http://www.projectoxford.ai to get a subscription key.
@@ -42,6 +43,9 @@ def main():
     # parser.add_argument('wavfile')
     # filename = parser.parse_args()
     print("Beginning main loop")
+    wavFilesProcessed = 0
+    index = 0
+    aggregatedTranscripts = ""
     for filename in sys.stdin:
         time.sleep(1)
         filename = filename.rstrip()
@@ -70,12 +74,19 @@ def main():
 
         # print out the transcribed text
         print(transcript)
+        aggregatedTranscripts += (" " + transcript)
 
         conn.close()
+        os.remove("recordings/" + filename)
 
-        inc = 0
-        fo = open("transcripts/"+filename[:-4] + ".txt", "w")
-        fo.write(transcript)
+        wavFilesProcessed = wavFilesProcessed + 1
+
+        if wavFilesProcessed == NUM_FILES_TO_AGGREGATE:
+            fo = open("transcripts/text" + str(index) + ".txt", "w")
+            fo.write(aggregatedTranscripts)
+            wavFilesProcessed = 0
+            index = index + 1
+            aggregatedTranscripts = ""
 
 if __name__ == "__main__":
     main()
