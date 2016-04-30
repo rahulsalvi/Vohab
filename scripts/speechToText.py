@@ -87,6 +87,7 @@ def main():
             wavFilesProcessed = 0
             index = index + 1
             aggregatedTranscripts = ""
+            fo.close()
 
 if __name__ == "__main__":
     main()
