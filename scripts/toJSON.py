@@ -29,9 +29,9 @@ def main():
 
         f.close()
 
-    # Converting to JSON Object
-    jsonObj = json.dumps(wordFreq,indent=2)
-    print(jsonObj)
+        # Converting to JSON Object
+        jsonObj = json.dumps(wordFreq,indent=2)
+        print(jsonObj)
 
 if __name__ == "__main__":
     main()
