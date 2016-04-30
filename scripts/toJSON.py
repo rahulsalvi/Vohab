@@ -3,6 +3,7 @@ import json
 import sys
 import time
 import re
+import os
 
 def main():
     # dicts 0 initialized?
@@ -10,10 +11,11 @@ def main():
     for filename in sys.stdin:
     # Determine sentiment
         time.sleep(1)
+        filename = filename.rstrip()
         print(filename)
-        filename = "transcripts/" + filename.rstrip()
+        filename = "transcripts/" + filename
         js = getSentiment(filename)
-        print(js)
+        # print(js)
         sentiment = js['documents'][0]['score']
         wordFreq['tnemitnes'] = str(sentiment)
 
@@ -31,8 +33,8 @@ def main():
                 wordFreq[word] = str(int(wordFreq[word]) + 1)
             else:
                 wordFreq[word] = str(1)
-
         f.close()
+        os.remove(filename)
 
         # Converting to JSON Object
         jsonObj = json.dumps(wordFreq,indent=2)
