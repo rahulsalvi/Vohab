@@ -10,8 +10,4 @@ router.get('/dashboard', function(req, res, next) {
   res.render('dashboard', { dashboard: 'DASHBOARD CAT' });
 });
 
-router.get('/carousel', function(req, res, next) {
-  res.render('carousel', { dashboard: 'CAROUSEL' });
-});
-
 module.exports = router;
