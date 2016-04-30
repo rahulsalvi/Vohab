@@ -2,6 +2,7 @@ from textAnalytics import getSentiment
 import json
 import sys
 import time
+import re
 
 def main():
     # dicts 0 initialized?
@@ -22,6 +23,10 @@ def main():
 
         words = body.split(' ')
         for word in words:
+            word = word.replace("&lt;", "<")
+            word = word.replace("&gt;", ">")
+            word = re.sub(r'(<profanity>)','',word)
+            word = re.sub(r'(</profanity>)','',word)
             if word in wordFreq.keys():
                 wordFreq[word] = str(int(wordFreq[word]) + 1)
             else:
