@@ -74,12 +74,12 @@ def main():
 
         # print out the transcribed text
         print(transcript)
-        aggregatedTranscripts += (" " + transcript)
+        if not "NOSPEECH" in transcript:
+            aggregatedTranscripts += (" " + transcript)
+            wavFilesProcessed = wavFilesProcessed + 1
 
         conn.close()
         os.remove("recordings/" + filename)
-
-        wavFilesProcessed = wavFilesProcessed + 1
 
         if wavFilesProcessed == NUM_FILES_TO_AGGREGATE:
             fo = open("transcripts/text" + str(index) + ".txt", "w")
