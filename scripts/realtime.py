@@ -8,7 +8,7 @@ CHUNK = 8192
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
-RECORD_SECONDS = 9
+RECORD_SECONDS = 5
 INPUT_DEVICE = 2
 
 def recordFragment(audio, stream, index, chunk, jformat, channels, rate, prefix, suffix, time):
