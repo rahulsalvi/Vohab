@@ -39,7 +39,7 @@ def main():
         while True:
             data = stream.read(CHUNK)
             rms = audioop.rms(data, 2)    # here's where you calculate the volume
-            print(rms)
+            # print(rms)
             if rms > 2000:
                 print("Recording")
                 recordFragment(p, stream, index, CHUNK, FORMAT, CHANNELS, RATE, FILENAME_PREFIX, FILENAME_SUFFIX, RECORD_SECONDS)

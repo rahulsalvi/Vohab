@@ -8,7 +8,7 @@ def main():
     for filename in sys.stdin:
     # Determine sentiment
         print(filename)
-        filename = filename.rstrip()
+        filename = "transcripts/" + filename.rstrip()
         js = getSentiment(filename)
         print(js)
         sentiment = js['documents'][0]['score']

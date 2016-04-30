@@ -53,6 +53,7 @@ def getSentiment(filename):
                 ]
             }
     fr.seek(0)
+    fr.close()
 
 #    jsonTopic = json.dumps(topicData,indent=4)
 #    jsonKeyword = json.dumps(keywordData,indent=4)
