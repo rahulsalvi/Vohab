@@ -2,6 +2,7 @@ import http.client, urllib.parse, json
 import argparse
 import os
 import sys
+import time
 
 def main():
     #Note: Sign up at http://www.projectoxford.ai to get a subscription key.
@@ -42,6 +43,7 @@ def main():
     # filename = parser.parse_args()
     print("Beginning main loop")
     for filename in sys.stdin:
+        time.sleep(1)
         filename = filename.rstrip()
         print("recordings/" + filename)
 
