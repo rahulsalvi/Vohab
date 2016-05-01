@@ -28,6 +28,8 @@ var obj = {
   "you": "1"
 }
 
+var correct = [{word: "thing1"}, {word:"thing2"}];
+
 
 var bad =  
 [ 
@@ -44,7 +46,6 @@ var bad =
   [ 'do', '1' ],
   [ 'of', '2' ],
   [ 'to', '1' ],
-  [ '&lt;profanity&gt;shit&lt;/profanity&gt;', '1' ],
   [ 'like', '1' ],
   [ 'big', '1' ],
   [ 'gonna', '2' ],

@@ -2,21 +2,22 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+var Frequency = new Schema({
+  word: String,
+  value: Number,
+  date: Date
+})
+
+var Sentiment = new Schema({
+    value: Number,
+    date: Date
+});
 // create a schema
 var userSchema = new Schema({
   name: String,
   password: String,
-  
-  frequency: [{ 
-  	type: String,
-  	type: Number,
-  	type: Date
-  }],
-
-  sentiment: [{
-  	types: Number,
-  	type: Date
-  }]
+  frequencies: [Frequency],
+  sentiments: [Sentiment]
 
 
 });
