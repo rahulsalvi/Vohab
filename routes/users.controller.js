@@ -115,7 +115,24 @@ router.get('/users/:username/frequency/today', function(req, res){
 		});
 		sendObj = 
 		[
-			["TUNA", 200]
+			["i", 100],
+			["the", 165],
+			["microsoft", 50],
+			["la", 2],
+			["hack", 20],
+			["firetucks", 5],
+			["well", 18],
+			["not", 70],
+			["prototype", 3],
+			["what", 53],
+			["team", 10],
+			["fancy", 20],
+			["words", 20],
+			["progress", 20],
+			["say", 20],
+			["if", 20],
+			["it", 20],
+			["ok", 20],
 		];
 
 		res.send(sendObj);
