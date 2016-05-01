@@ -1,5 +1,5 @@
 module.exports = {
-    url : 'mongodb://timbo:Password12@13.91.2.252'
+    url : 'mongodb://13.91.2.252:27017/vohab'
 }
 
 // timbo

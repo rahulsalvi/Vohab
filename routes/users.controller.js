@@ -24,6 +24,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res) {
+	console.log(req.body);
+	
 	var user = new User();
 	user.username = req.body.username;
 	user.password = req.body.password;
@@ -63,61 +65,8 @@ router.get('/users/:username', function(req, res){
 	});
 });
 
-// maybe TODO - maybe write "get user from :user_id"
-// router.put(function(req, res) {
-// 	User.findById(req.params.user_id, function(err, user) {
-
-// 	})
-// })
-
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-
 
 /* USER statistics */
-
-/* dummy PUT for Alex */
-router.put('/test', function(req, res, next) {
-	var nastyArray = req.body;
-	var targetArr = convert2Array(nastyArray);
-	var storeTuple = {};
-	var now = Date.now();
-	var user = new User();
-
-	console.log(targetArr);
-
-	for(var i=0; i<targetArr.length; i++){
-
-		//var smallArr = targetArr[i];
-		//var test = {1, new Date()};
-			console.log(targetArr[i][0]);
-			console.log(user.sentiments);
-			var sentiment = {};
-			user.sentiments.push(sentiment);
-
-		if(targetArr[i][0] ==='tnemitnes'){
-			// add to sentiment value
-			//user.sentiment.push({Number(targetArr[i][1]), new Date()});
-		}
-		// add to work frequency array
-		//user.frequency.push({targetArr[i][0], Number(targetArr[i][1]), now});
-	}
-
-		// create tuple with 0th element (word) and 1st element (value)
-		// targetArr.push({
-		// 	"word"      :arr[i][0], 
-		// 	"frequency" :arr[i][1]
-		// });
-
-	res.send();
-
-});
-
-		// [
-		//	[ 'word', '999']
-		//      ...
-		//  [  'word1', '10' ]
-		// ]
 
 /* PUT dashboard page */
 router.put('/users/:username/statistics', function(req, res, next) {
@@ -194,5 +143,54 @@ router.get('/users/:username/frequency/day', function(req, res){
 
 router.post
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* dummy PUT for Alex */
+// router.put('/test', function(req, res, next) {
+// 	var nastyArray = req.body;
+// 	var targetArr = convert2Array(nastyArray);
+// 	var storeTuple = {};
+// 	var now = Date.now();
+// 	var user = new User();
+
+// 	console.log(targetArr);
+
+// 	for(var i=0; i<targetArr.length; i++){
+
+// 		//var smallArr = targetArr[i];
+// 		//var test = {1, new Date()};
+// 			console.log(targetArr[i][0]);
+// 			console.log(user.sentiments);
+// 			var sentiment = {};
+// 			user.sentiments.push(sentiment);
+
+// 		if(targetArr[i][0] ==='tnemitnes'){
+// 			// add to sentiment value
+// 			//user.sentiment.push({Number(targetArr[i][1]), new Date()});
+// 		}
+// 		// add to work frequency array
+// 		//user.frequency.push({targetArr[i][0], Number(targetArr[i][1]), now});
+// 	}
+
+// 		// create tuple with 0th element (word) and 1st element (value)
+// 		// targetArr.push({
+// 		// 	"word"      :arr[i][0], 
+// 		// 	"frequency" :arr[i][1]
+// 		// });
+
+// 	res.send();
+
+// });
 
 
