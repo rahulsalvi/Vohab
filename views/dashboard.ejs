@@ -4,6 +4,8 @@
     <title><%= dashboard %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Chewy|Fredoka+One|Montserrat+Alternates|Carter+One' rel='stylesheet' type='text/css'>
 
     <!-- c3 and d3 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -17,9 +19,7 @@
     <ul id="dashboard-nav" class="drop-shadow">
       <li><img src="images/networking-filled.png" style="height: 90px" alt="Vohab Logo"></li>
       <li><h1 style="font-size: 30px; margin-left: 30px">VOHAB: Vocabulary Habits for Life</h1></li>
-      <!-- <li><h3>Ready to see your speech analytics today, Laura?</h3></li> -->
-      <!-- <li><p>Welcome to your vohab.co dashboard!</p></li> -->
-      <!-- <input type="button" value="Logout"></input> -->
+      <li><p style="font-size: 20px; float: right; position: absolute; right: 315px; padding-top: 10px">Welcome back, Brett</p></li>
 
       <!-- Profile Picture -->
       <li><img id="brett" src="images/brett-cropped.png" style="float: right; position: absolute; right: 220px; width: 85px; padding-top: -10px"></li>
@@ -34,30 +34,39 @@
     <div class="middle-opaque">
       <h1 style="font-size:30px">Dashboard</h1>
 
+        <input style="color:black" type="image" id="buttonForSync" src="/images/syncbutton.png" value="Sync" onclick="syncDashboard()"></input>
+      
       <!-- Frequency -->
-      <div class="col-md-4" id="frequencyDiv">
-        <p style="clear: left">Frequency Div</p>
-        <div id="chart"></div>
+      <div class="col-sm-4" id="frequencyDiv">
+        <p style="clear: left">Word Frequency - Today</p>
+        <div id="freqTodayChart"></div>
+      </div>
+      <div class="col-sm-4" id="frequencyDiv">
+        <p style="clear: left">Word Frequency - This Week</p>
+        <div id="freqWeekChart"></div>
       </div>
 
       <!-- Sentiment -->
-      <div class="col-md-4" id="sentimentDiv">
-        <p>Sentiment Div</p>
-        <div id="chart2"></div>
-      </div>
+<!--       <div class="col-md-4" id="sentimentDiv">
+        <p>Sentiment Today</p>
+        <div id="sentimentTodayChart"></div>
+      </div> -->
 
       <!-- Tone -->
       <div class="row" id="toneDiv">
         <div class="col-xs-4 toneGraphDiv">
           <p>Tone Gauge Chart - Day</p>
+          <p>Tone: ANGRY</p>
           <div id="toneGaugeTodayChart"></div>
         </div>
         <div class="col-xs-4 toneGraphDiv">
           <p>Tone Gauge Chart - Week</p>
+          <p>Tone: SAD</p>
           <div id="toneGaugeWeekChart"></div>
         </div>
         <div class="col-xs-4 toneGraphDiv">
           <p>Tone Gauge Chart - Month</p>
+          <p>Tone: HAPPY</p>
           <div id="toneGaugeMonthChart"></div>
         </div>
       </div>
@@ -72,9 +81,44 @@
 
       <script>
 
-      // Word frequency chart for today chart
-          var chart = c3.generate({
-            bindto: '#chart',
+      // Word frequency chart for today 
+          var freqTodayChart = c3.generate({
+            bindto: '#freqTodayChart',
+            data: {
+              columns: [ 
+                [ 'is', '1' ],
+                [ 'in', '1' ],
+                [ 'be', '2' ],
+                [ 'forty', '1' ],
+                [ 'years', '1' ],
+                [ 'smoking', '1' ],
+                [ 'pictures', '1' ],
+                [ 'fifty', '1' ],
+                [ 'this', '1' ],
+                [ 'how', '1' ],
+                [ 'do', '1' ],
+                [ 'of', '2' ],
+                [ 'to', '1' ],
+                [ '&lt;profanity&gt;shit&lt;/profanity&gt;', '1' ],
+                [ 'like', '1' ],
+                [ 'big', '1' ],
+                [ 'gonna', '2' ],
+                [ 'planet', '1' ],
+                [ 'it\'s', '1' ],
+                [ 'bowl', '1' ],
+                [ 'a', '1' ],
+                [ 'you', '1' ] 
+                ],
+              type: 'pie'
+            },
+              legend: {
+                position: 'right'
+              }
+          });
+
+          // Word frequency chart for week
+          var freqWeekChart = c3.generate({
+            bindto: '#freqWeekChart',
             data: {
               columns: [ 
                 [ 'is', '1' ],
@@ -108,25 +152,25 @@
           });
 
       // Second chart
-        var chart2 = c3.generate({
-          bindto: '#chart2',
-          data: {
-              columns: [
-                  ['data1', -30, 200, 200, 400, -150, 250],
-                  ['data2', 130, 100, -100, 200, -150, 50],
-                  ['data3', -230, 200, 200, -300, 250, 250]
-              ],
-              type: 'bar',
-              groups: [
-                  ['data1', 'data2']
-              ]
-          },
-          grid: {
-              y: {
-                  lines: [{value:0}]
-              }
-          }
-        });
+        // var sentimentTodayChart = c3.generate({
+        //   bindto: '#sentimentTodayChart',
+        //   data: {
+        //       columns: [
+        //           ['data1', -30, 200, 200, 400, -150, 250],
+        //           ['data2', 130, 100, -100, 200, -150, 50],
+        //           ['data3', -230, 200, 200, -300, 250, 250]
+        //       ],
+        //       type: 'bar',
+        //       groups: [
+        //           ['data1', 'data2']
+        //       ]
+        //   },
+        //   grid: {
+        //       y: {
+        //           lines: [{value:0}]
+        //       }
+        //   }
+        // });
 
       // Tone Gauge Chart - Today
         var toneGaugeTodayChart = c3.generate({
@@ -198,6 +242,99 @@
               //width: 100 // this makes bar width 100px
           }
       });
+
+      function  syncDashboard() {
+        var myname = "brett";
+
+        // Test the syncDashboard() call
+        console.log("whatever");
+
+        // freqTodayChart
+        $.getJSON("/users/" + myname + "/frequency/today").done(function(data){
+            //console.log(data);
+            freqTodayChart.load({
+              data: data                
+                // columns: [
+                //     [ 'pizza', '67' ],
+                //     [ 'trees', '34' ],
+                //     [ 'fish', '30' ],
+                //     [ 'lingerie', '22' ],
+                //     [ 'shark', '17' ]
+                //     ],
+                unload: freqTodayChart.columns,
+            });
+         });
+
+        // freqWeekChart
+        $.getJSON("/users/" + myname + "/frequency/week").done(function(data){
+            console.log(data);
+            freqWeekChart.load({
+                columns: [
+                    ['data1', data[0]],
+                    ['data4', data[1]],
+                ],
+                unload: freqWeekChart.columns,
+            });
+          });
+        
+
+        // toneGaugeTodayChart
+        $.getJSON("/users/" + myname + "/tone/today").done(function(data){
+            console.log(data);
+            // postprocess data if u want
+            chart4.load({
+                columns: [
+                    ['data1', data[0]],
+                    ['data4', data[1]],
+                ],
+                unload: ['data2', 'data3'],
+            });
+          });
+       
+
+        // toneGaugeWeekChart
+        $.getJSON("/users/" + myname + "/tone/week").done(function(data){
+            console.log(data);
+            // postprocess data if u want
+            chart4.load({
+                columns: [
+                    ['data1', data[0]],
+                    ['data4', data[1]],
+                ],
+                unload: ['data2', 'data3'],
+            });
+          });
+        
+
+        // toneGaugeMonthChart
+        $.getJSON("/users/" + myname + "/tone/month").done(function(data){
+            console.log(data);
+            // postprocess data if u want
+            chart4.load({
+                columns: [
+                    ['data1', data[0]],
+                    ['data4', data[1]],
+                ],
+                unload: ['data2', 'data3'],
+            });
+          });
+        
+
+        // chart4
+        $.getJSON("/users/" + myname + "/frequency/data").done(function(data){
+            console.log(data);
+            // postprocess data if u want
+            chart4.load({
+                columns: [
+                    ['data1', data[0]],
+                    ['data4', data[1]],
+                ],
+                unload: ['data2', 'data3'],
+            });
+          });
+      };
+        
+
       </script>
 
       <div id="footer">

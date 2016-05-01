@@ -1,4 +1,5 @@
 from textAnalytics import getSentiment
+import requests
 import json
 import sys
 import time
@@ -16,7 +17,7 @@ def main():
         filename = "transcripts/" + filename
         js = getSentiment(filename)
         # print(js)
-        sentiment = js['documents'][0]['score']
+        sentiment = 100 * js['documents'][0]['score']
         wordFreq['tnemitnes'] = str(sentiment)
 
     # Counting word frequency
@@ -38,6 +39,10 @@ def main():
 
         # Converting to JSON Object
         jsonObj = json.dumps(wordFreq,indent=2)
+
+        url = 'http://10.203.114.190:3000/users/test'
+        headers = {'Content-length':url, 'Content-Type':'application/json'}
+        r = requests.put(url, headers=headers, data=jsonObj)
         print(jsonObj)
 
 if __name__ == "__main__":

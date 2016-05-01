@@ -8,21 +8,19 @@ CHUNK = 8192
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
-RECORD_SECONDS = 5
+RECORD_SECONDS = 10
 INPUT_DEVICE = 2
+TALKING_THRESHOLD = 2000
+QUIET_FRAME_THRESHOLD = 5
+MAX_FRAMES = 61
 
-def recordFragment(audio, stream, index, chunk, jformat, channels, rate, prefix, suffix, time):
-    frames = []
-    for i in range(0, int(rate / chunk * time)):
-        data = stream.read(chunk)
-        frames.append(data)
+def writeFrames(audio, frames, index, prefix, suffix, channels, jformat, rate):
     waveFile = wave.open(prefix+str(index)+suffix, 'wb')
     waveFile.setnchannels(channels)
     waveFile.setsampwidth(audio.get_sample_size(jformat))
     waveFile.setframerate(rate)
     waveFile.writeframes(b''.join(frames))
     waveFile.close()
-
 
 def main():
     p = pyaudio.PyAudio()
@@ -34,19 +32,32 @@ def main():
                     frames_per_buffer=CHUNK,
                     input_device_index=INPUT_DEVICE)
 
+    frames = []
+
     try:
         index = 0
         while True:
             data = stream.read(CHUNK)
-            rms = audioop.rms(data, 2)    # here's where you calculate the volume
-            # print(rms)
-            if rms > 2000:
+            if audioop.rms(data, 2) > TALKING_THRESHOLD:
                 print("Recording")
-                recordFragment(p, stream, index, CHUNK, FORMAT, CHANNELS, RATE, FILENAME_PREFIX, FILENAME_SUFFIX, RECORD_SECONDS)
-                index = index + 1
+                frames.append(data)
+                quietFrames = 0
+                while len(frames) < MAX_FRAMES and quietFrames < QUIET_FRAME_THRESHOLD:
+                    data = stream.read(CHUNK)
+                    frames.append(data)
+                    if audioop.rms(data, 2) < TALKING_THRESHOLD:
+                        quietFrames = quietFrames + 1
+                    else:
+                        quietFrames = 0
                 print("Finished")
+            if len(frames) >= MAX_FRAMES:
+                writeFrames(p, frames, index, FILENAME_PREFIX, FILENAME_SUFFIX, CHANNELS, FORMAT, RATE)
+                frames = []
+                index = index + 1
     except KeyboardInterrupt:
-            pass
+        if len(frames) > 0:
+            writeFrames(p, frames, index, FILENAME_PREFIX, FILENAME_SUFFIX, CHANNELS, FORMAT, RATE)
+        pass
 
     print("")
     print("Cleaning up")
