@@ -55,7 +55,7 @@ router.post('/', function(req, res) {
 // user prefix /users/ to denote we're getting information about a specific user
 router.get('/users/:username', function(req, res){
 	var username = req.username;
-	User.findOne({username}, function(err, user) {
+	User.findOne(username, function(err, user) {
 		if(err) res.send(err);
 		else if(!user){
 			res.send("User not found");
@@ -101,7 +101,7 @@ router.put('/users/:username/statistics', function(req, res, next) {
 // accessible at /users/:username/stastics/
 router.get('/users/:username/frequency/day', function(req, res){
 	var username = req.username;
-	User.findOne({username}, function(err, user){
+	User.findOne(username, function(err, user){
 		if(err) 		res.send(err);	
 		else if(!user) 	res.send("User not found");
 
@@ -132,7 +132,7 @@ router.get('/users/:username/frequency/day', function(req, res){
 		if (date.getDay() == today) {
 			console.log("comparing " + date.getDay() + " to " + today);
 			// we found the date we were looking for
-			targetArr.push({word, freq});
+			targetArr.push(word, freq);
 		}
 
 	});

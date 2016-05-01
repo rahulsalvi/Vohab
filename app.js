@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
 // // If no error, then good to proceed.
 //     console.log("Connected");
 // });
-
+console.log('here'); 
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
