@@ -4,25 +4,10 @@ body, html {
 }
 
 body {
-  /*padding: 50px;*/
   font: 14px Helvetica, Arial, sans-serif;
-  background-color: #33adff;
-  background-color: #9999ff;
-  background-color: #FF6961;
-  background-color: #8370a9;
-  background-color: #f1eff5;
-  background-color: #ffb347;
-  background-color: #aec6cf;
+  vertical-align: top;
   text-align: center;
   background-image: url("/images/triangle-background-17.png");
-  padding-bottom: 50px;
-}
-
-nav {
-  background-color: #FFFFFF;
-  padding: 0;
-  margin: 0;
-  opacity: 0;
 }
 
 a {
@@ -37,29 +22,27 @@ p {
   font-size: 20px;
 }
 
-.frequencyDiv, .sentimentDiv, .toneDiv {
+/*.frequencyDiv, .sentimentDiv, .toneGraphDiv {
 	height: 100%;
 /*	width: 100%;*/
-	background-color: #ffffff;
-}
+/*	background-color: #ffffff;
+}*/
 
-#index-title {
+/*#index-title {
   font-size: 100px;
-}
+}*/
 
 #title-blurb {
   font-size: 20px;
 }
 
-#col-image {
+/*#col-image {
   height: 30px;
-}
+}*/
 
 .middle-opaque {
   height: 100%;
- /* background-color: rgba(255,255,255,1);
-  background-color:rgba(72,72,72,0.4);*/
-/*  border-radius: 30px;*/
+  background-color: white;
   padding: 20px;
   margin-bottom: 0px;
   margin-top: 0px;
@@ -69,20 +52,18 @@ p {
   height: 100px;
 }
 
-.explain-vohab {
-/*  background-color: white;
-  background-color:rgba(72,72,72,0.4);*/
+#explain-vohab {
   height: 100%;
+  background-color:white;
   padding: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 0;
 }
 
 .explain-vohab-inner {
-  height: 100%;
+  height: 500px;
+  width: 74%;
   margin: auto;
-  width: 60%;
 }
-
 
 /* CHART DATA STYLING */
 #chart .c3-line-data2 {
@@ -93,28 +74,109 @@ p {
   height: 300px;
 }
 
-#myNav {
-  height: 40px;
-  background-color: white;
-  padding: 15px;
+.special {
+  padding-left:0;
 }
 
-.drop-shadow {
+
+/*#index-nav {
+  height: 40px;
+  background-color: white;
+  background-color: rgba(255,255,255,0.4);
+  padding: 20px;
+  float: right;
+  clear: left;
+  display: block;
+}*/
+
+/*.drop-shadow {
   -webkit-box-shadow: 0px 5px #000000;
    -moz-box-shadow: 0px 5px #000000;
         box-shadow: 0px 5px #000000;
+}*/
+
+#buttonForLogout {
+  /*margin-top: 20px;*/
 }
 
-#buttonForNav {
-  margin-top: 20px;
+#dashboard-nav {
+  margin-top: 0;
+  padding: 20px;
+  height: 90px;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
+li {
+  display: inline;
+  float: left;
+}
+
+#footer {
+  height: 200px;
+  background-color: black;
+  padding-top: 40px;
+  color: white;
+  margin-top: 0;
+}
+
+#index-footer p {
+  color: white;
+}
+
+#buttonForLogout {
+  display: block;
+  float: right;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.spaced-col {
+  padding: 0px 10px;
+}
+
+#brett:hover {
+    -webkit-filter: blur(0.5px); /* Chrome, Safari, Opera */
+    filter: blur(0.5px);
+}
+
+#toneDiv {
+  display: inline;
+}
+
+.toneGraphDiv {
+  text-align: left;
+  width: 30%;
+  display: inline;
+}
+
+/*#teamMembersDiv {
+  float: center;
+  display: block;
+  margin: auto;
+}*/
+
+#teamMembers li {
+  padding-left: 50px;
+}
+
+/*.meatTheTeam {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  clear: both;
+}*/
 
 
 
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
-
+/*
 #feedback-page{
   text-align:center;
 }
@@ -128,7 +190,7 @@ p {
 }
 
 #form-div {
-  /*background-color:rgba(72,72,72,0.4);*/
+  background-color:rgba(72,72,72,0.4);
   padding-left:35px;
   padding-right:35px;
   padding-top:35px;
@@ -142,7 +204,7 @@ p {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
 }
-
+/*
 .feedback-input {
   color:#3c3c3c;
   font-family: Helvetica, Arial, sans-serif;
@@ -173,10 +235,10 @@ p {
 .focused{
   color:#30aed6;
   border:#30aed6 solid 3px;
-}
+}*/
 
 /* Icons ---------------------------------- */
-#subject{
+/*#subject{
   background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
   background-size: 30px 30px;
   background-position: 11px 8px;
@@ -189,7 +251,7 @@ p {
   background-position: 8px 5px;
   background-position: 11px 8px;
   background-repeat: no-repeat;
-}
+}*/
 
 /*#email{
   background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
@@ -205,7 +267,7 @@ p {
   background-repeat: no-repeat;
 }*/
 
-#comment{
+/*#comment{
   background-image: url(http://rexkirby.com/kirbyandson/images/comment.svg);
   background-size: 30px 30px;
   background-position: 11px 8px;
@@ -217,7 +279,7 @@ textarea {
     height: 150px;
     line-height: 150%;
     resize:vertical;
-}
+}*/
 
 input:hover, textarea:hover,
 input:focus, textarea:focus {
@@ -268,7 +330,7 @@ input:focus, textarea:focus {
   width:100%;
   background-color:white;
 }
-
+/*
 @media only screen and (max-width: 580px) {
   #form-div{
     left: 3%;
@@ -278,4 +340,4 @@ input:focus, textarea:focus {
     padding-left: 3%;
     padding-right: 3%;
   }
-}
+}*/
