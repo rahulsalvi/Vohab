@@ -17,7 +17,7 @@ def main():
         filename = "transcripts/" + filename
         js = getSentiment(filename)
         # print(js)
-        sentiment = js['documents'][0]['score']
+        sentiment = 100 * js['documents'][0]['score']
         wordFreq['tnemitnes'] = str(sentiment)
 
     # Counting word frequency
