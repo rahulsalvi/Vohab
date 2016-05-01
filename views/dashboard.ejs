@@ -253,7 +253,7 @@
         $.getJSON("/users/" + myname + "/frequency/today").done(function(data){
             //console.log(data);
             freqTodayChart.load({
-              data: data                
+              //data: data                
                 // columns: [
                 //     [ 'pizza', '67' ],
                 //     [ 'trees', '34' ],
@@ -261,7 +261,7 @@
                 //     [ 'lingerie', '22' ],
                 //     [ 'shark', '17' ]
                 //     ],
-                unload: freqTodayChart.columns,
+                //unload: freqTodayChart.columns
             });
          });
 

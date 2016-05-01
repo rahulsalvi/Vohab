@@ -24,20 +24,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// var Connection = require('tedious').Connection;
-// var config = {
-//     userName: 'vohab',
-//     password: 'vohabpassword123!',
-//     server: 'vohab.database.windows.net',
-//     // If you are on Microsoft Azure, you need this:
-//     options: {encrypt: true, database: 'AdventureWorks'}
-// };
-// var connection = new Connection(config);
-// connection.on('connect', function(err) {
-// // If no error, then good to proceed.
-//     console.log("Connected");
-// });
-
+var wonky = [];
+wonky.push([1,2,3]);
+wonky.push(30);
+console.log(wonky);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

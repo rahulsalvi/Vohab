@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res) {
 	console.log(req.body);
-	
+
 	var user = new User();
 	user.username = req.body.username;
 	user.password = req.body.password;
@@ -112,6 +112,12 @@ router.get('/users/:username/frequency/day', function(req, res){
 		sentimentsArray.map(function(elem){
 			sentimentsAverage += elem;
 		});
+
+		elem = elem / sentimentsArray.length;
+
+		var sendObject = [];
+		//
+		res.send()
 	});
 
 	res.send("something");
