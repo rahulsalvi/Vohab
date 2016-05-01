@@ -39,7 +39,6 @@ def main():
 
         # Converting to JSON Object
         jsonObj = json.dumps(wordFreq,indent=2)
-        jsonObjLen = (sys.getsizeof(jsonObj))
 
         url = 'http://10.203.114.190:3000/users/test'
         headers = {'Content-length':url, 'Content-Type':'application/json'}
