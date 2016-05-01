@@ -6,7 +6,7 @@ body, html {
 body {
   font: 14px Helvetica, Arial, sans-serif;
   font-family: 'Chewy', cursive;
-  font-family: 'Montserrat Alternates;
+  font-family: 'Montserrat Alternates';
   vertical-align: top;
   text-align: center;
   background-image: url("/images/triangle-background-17.png");
@@ -166,9 +166,15 @@ li {
 }
 
 .toneGraphDiv {
-  text-align: left;
+  text-align: center;
   width: 30%;
-  display: inline;
+  display: inline-block;
+}
+
+.frequencyDiv {
+  text-align: center;
+  width: 40%;
+  display: inline-block;
 }
 
 /*#teamMembersDiv {
@@ -217,6 +223,8 @@ input:focus, textarea:focus {
   margin-top:-4px;
   font-weight:700;
     font-family: 'Chewy', cursive;
+      font-family: 'Montserrat Alternates';
+
 
 }
 
