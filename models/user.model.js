@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var Frequency = new Schema({
   word: String,
-  freq: Number,
+  value: Number,
   date: Date
 })
 
