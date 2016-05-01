@@ -4,10 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose   = require('mongoose');
+
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users.controller.js');
 var dashboard = require('./routes/dashboard');
+var db = require('./config/db');
+
+
+mongoose.connect(db.url, function(err, res) {
+if(err) throw err;
+  console.log("mongoose connected");
+});
 
 var app = express();
 
@@ -15,8 +24,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// var Connection = require('tedious').Connection;
+// var config = {
+//     userName: 'vohab',
+//     password: 'vohabpassword123!',
+//     server: 'vohab.database.windows.net',
+//     // If you are on Microsoft Azure, you need this:
+//     options: {encrypt: true, database: 'AdventureWorks'}
+// };
+// var connection = new Connection(config);
+// connection.on('connect', function(err) {
+// // If no error, then good to proceed.
+//     console.log("Connected");
+// });
+
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
