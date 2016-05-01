@@ -73,13 +73,15 @@ def main():
         transcript = data[start+9:end]
 
         # print out the transcribed text
-        print(transcript)
-        aggregatedTranscripts += (" " + transcript)
+        if (not "NOSPEECH" in transcript) and (not "FALSERECO" in transcript):
+            print(transcript)
+            aggregatedTranscripts += (" " + transcript)
+            wavFilesProcessed = wavFilesProcessed + 1
+        else:
+            print("NOSPEECH")
 
         conn.close()
         os.remove("recordings/" + filename)
-
-        wavFilesProcessed = wavFilesProcessed + 1
 
         if wavFilesProcessed == NUM_FILES_TO_AGGREGATE:
             fo = open("transcripts/text" + str(index) + ".txt", "w")
@@ -87,6 +89,7 @@ def main():
             wavFilesProcessed = 0
             index = index + 1
             aggregatedTranscripts = ""
+            fo.close()
 
 if __name__ == "__main__":
     main()
