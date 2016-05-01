@@ -73,10 +73,12 @@ def main():
         transcript = data[start+9:end]
 
         # print out the transcribed text
-        print(transcript)
-        if not "NOSPEECH" in transcript:
+        if (not "NOSPEECH" in transcript) and (not "FALSERECO" in transcript):
+            print(transcript)
             aggregatedTranscripts += (" " + transcript)
             wavFilesProcessed = wavFilesProcessed + 1
+        else:
+            print("NOSPEECH")
 
         conn.close()
         os.remove("recordings/" + filename)
