@@ -11,12 +11,12 @@ var userSchema = new Schema({
   	type: String,
   	type: Number,
   	type: Date
-  }];
+  }],
 
   sentiment: [{
   	types: Number,
   	type: Date
-  }];
+  }]
 
 
 });

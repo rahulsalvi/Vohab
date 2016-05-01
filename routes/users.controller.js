@@ -1,6 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model.js');
+var convert2Array = function(obj) {
+	var arr2rtrn = []
+	var keys = Object.keys(obj)
+	keys.forEach(function(key){
+		arr2rtrn.push([key, obj[key]])
+	})
+	//console.log("arr", arr2rtrn)
+	return arr2rtrn;
+} 
 
 /* GET users listing. */
 
@@ -63,29 +72,24 @@ router.get('/users/:username', function(req, res){
 /* USER statistics */
 
 /* dummy PUT for Alex */
-router.put('/users/:username/statistics', function(req, res, next) {
+router.put('/test', function(req, res, next) {
 	var nastyArray = req.body;
-	var betterArray = convert2Array(nastyArray);
-
-	var user = User.findById(req.params.user_id, function(err, user){
-		if(err) res.send(err);
-		else if(!user) res.send("user doesn't exist!");
-	})
-		// [
-		//	[ 'word', '999']
-		//      ...
-		//  [  'word1', '10' ]
-
+	var targetArr = convert2Array(nastyArray);
 	var storeTuple = {};
 	var now = Date.now();
 
-	for(var i=0; i<arr.length; i++){
-		if(targetArr[i][0]==='tnemitnes'){
+	console.log(targetArr);
+
+	for(var i=0; i<targetArr.length; i++){
+
+		var key = targetArr[i][0];
+
+		if(key ==='tnemitnes'){
 			// add to sentiment value
-			user.sentiment.push({Number(targetArr[i][1]), now});
+			//user.sentiment.push({ Number(key), now});
 		}
 		// add to work frequency array
-		user.frequency.push(storeTuple = {targetArr[i][0], targetArr[i][1], now});
+		//user.frequency.push({targetArr[i][0], Number(targetArr[i][1]), now});
 	}
 
 		// create tuple with 0th element (word) and 1st element (value)
@@ -94,7 +98,7 @@ router.put('/users/:username/statistics', function(req, res, next) {
 		// 	"frequency" :arr[i][1]
 		// });
 
-	res.send(user);
+	res.send();
 
 });
 
@@ -106,22 +110,25 @@ router.put('/users/:username/statistics', function(req, res, next) {
 	var user = User.findById(req.params.user_id, function(err, user){
 		if(err) res.send(err);
 		else if(!user) res.send("user doesn't exist!");
-	})
+	});
 		// [
 		//	[ 'word', '999']
 		//      ...
 		//  [  'word1', '10' ]
+		// ]
 
 	var storeTuple = {};
 	var now = Date.now();
 
+	console.log(targetArr[i][1]);
+
 	for(var i=0; i<arr.length; i++){
 		if(targetArr[i][0]==='tnemitnes'){
 			// add to sentiment value
-			user.sentiment.push({Number(targetArr[i][1]), now});
+			//user.sentiment.push({Number(targetArr[i][1]), now});
 		}
 		// add to work frequency array
-		user.frequency.push(storeTuple = {targetArr[i][0], targetArr[i][1], now});
+		//user.frequency.push(storeTuple = {targetArr[i][0], targetArr[i][1], now});
 	}
 
 		// create tuple with 0th element (word) and 1st element (value)
@@ -140,24 +147,24 @@ router.get('/users/:username/statistics/day', function(req, res){
 	var bigArr = [];
 	var username = req.username;
 	User.findOne({username}, function(err, user){
-		if(err) res.send(err);
-	})
-	else if(!user){
-			res.send("User not found");
-	}
+		if(err) 		res.send(err);	
+		else if(!user) 	res.send("User not found");
+	});
 
 	//bigArr has 3-tuples. we just want to send frequencies of pertinent dates
 	bigArr = user.frequencies;
 
 	var targetArr = [];
 
-	bigArr.map(function({word, freq, date}){
+	bigArr.map(function(obj){
+		//{word, freq, date}
+		var date = obj[1]; // get the second object, Date
+
 		// compare given date with TODAY
 
 		// TODO - may cause issues
-		Date today = Date().getDay();
-		if ( {date.getDay() == today })
-		{
+		var today = Date().getDay();
+		if (date.getDay() == today) {
 			console.log("comparing " + date.getDay() + " to " + today);
 			// we found the date we were looking for
 			targetArr.push({word, freq});
@@ -171,3 +178,5 @@ router.get('/users/:username/statistics/day', function(req, res){
 
 router.post
 module.exports = router;
+
+

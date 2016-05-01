@@ -66,9 +66,6 @@ var convert2Array = function(obj) {
 	return arr2rtrn;
 } 
 
-var dbInsert() {
-
-}
 
 /* GET dashboard page. */
 router.get('/', function(req, res, next) {

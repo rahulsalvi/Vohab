@@ -1,3 +1,3 @@
 module.exports = {
-        url : 'mongodb://localhost:27017/express_test'
+        url : 'mongodb://ryan:ryan@ds023478.mlab.com:23478/vohab'
 }

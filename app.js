@@ -8,7 +8,7 @@ var mongoose   = require('mongoose');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users.controller.js');
 var dashboard = require('./routes/dashboard');
 var db = require('./config/db');
 
