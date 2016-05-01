@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model.js');
+
 var convert2Array = function(obj) {
 	var arr2rtrn = []
 	var keys = Object.keys(obj)
@@ -77,16 +78,22 @@ router.put('/test', function(req, res, next) {
 	var targetArr = convert2Array(nastyArray);
 	var storeTuple = {};
 	var now = Date.now();
+	var user = new User();
 
 	console.log(targetArr);
 
 	for(var i=0; i<targetArr.length; i++){
 
-		var key = targetArr[i][0];
+		//var smallArr = targetArr[i];
+		//var test = {1, new Date()};
+			console.log(targetArr[i][0]);
+			console.log(user.sentiments);
+			var sentiment = {};
+			user.sentiments.push(sentiment);
 
-		if(key ==='tnemitnes'){
+		if(targetArr[i][0] ==='tnemitnes'){
 			// add to sentiment value
-			//user.sentiment.push({ Number(key), now});
+			//user.sentiment.push({Number(targetArr[i][1]), new Date()});
 		}
 		// add to work frequency array
 		//user.frequency.push({targetArr[i][0], Number(targetArr[i][1]), now});
@@ -143,13 +150,28 @@ router.put('/users/:username/statistics', function(req, res, next) {
 
 // accessible at /users/:username/stastics/
 
-router.get('/users/:username/statistics/day', function(req, res){
+router.get('/users/:username/frequency/day', function(req, res){
 	var bigArr = [];
 	var username = req.username;
 	User.findOne({username}, function(err, user){
 		if(err) 		res.send(err);	
 		else if(!user) 	res.send("User not found");
+
+		// gather all sentiments within a week from today
+
+		var sentiments = user.sentiments
+		var total = 0;
+
+		for (sentiment in sentiments){
+			//do stuff
+		}
+
+
+	
+
 	});
+
+	res.send("something");
 
 	//bigArr has 3-tuples. we just want to send frequencies of pertinent dates
 	bigArr = user.frequencies;

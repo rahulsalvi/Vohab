@@ -1,3 +1,6 @@
 module.exports = {
-        url : 'mongodb://ryan:ryan@ds023478.mlab.com:23478/vohab'
+        url : 'mongodb://timbo:Password12@13.91.2.252/vohab'
 }
+
+// timbo
+// Password12
