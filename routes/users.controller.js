@@ -99,8 +99,9 @@ router.put('/users/:username/statistics', function(req, res, next) {
 });
 
 // accessible at /users/:username/stastics/
-router.get('/users/:username/frequency/day', function(req, res){
+router.get('/users/:username/frequency/today', function(req, res){
 	var username = req.username;
+	var sendObj;
 	User.findOne({username}, function(err, user){
 		if(err) 		res.send(err);	
 		else if(!user) 	res.send("User not found");
@@ -112,34 +113,173 @@ router.get('/users/:username/frequency/day', function(req, res){
 		sentimentsArray.map(function(elem){
 			sentimentsAverage += elem;
 		});
-	});
+		sendObj = 
+		[
+			["TUNA", 200]
+		];
 
-	res.send("something");
-
-	//bigArr has 3-tuples. we just want to send frequencies of pertinent dates
-	bigArr = user.frequencies;
-
-	var targetArr = [];
-
-	bigArr.map(function(obj){
-		//{word, freq, date}
-		var date = obj[1]; // get the second object, Date
-
-		// compare given date with TODAY
-
-		// TODO - may cause issues
-		var today = Date().getDay();
-		if (date.getDay() == today) {
-			console.log("comparing " + date.getDay() + " to " + today);
-			// we found the date we were looking for
-			targetArr.push({word, freq});
-		}
+		res.send(sendObj);
 
 	});
+});
 
-	console.log("done - ", targetArr);
+// frequency week
+router.get('/users/:username/frequency/week', function(req, res){
+	var username = req.username;
+	var sendObj;
+	User.findOne({username}, function(err, user){
+		if(err) 		res.send(err);	
+		else if(!user) 	res.send("User not found");
 
-})
+		// gather all sentiments within a week from today
+		var sentimentsArray   = user.sentiments
+		var sentimentsAverage = 0;
+
+		sentimentsArray.map(function(elem){
+			sentimentsAverage += elem;
+		});
+
+		var userWords = user.frequencies;
+
+		sendObj = 
+		[
+			userWords
+		];
+
+		res.send(sendObj);
+
+	});
+});
+
+// if we want frequency month
+
+// tone day
+router.get('/users/:username/tone/today', function(req, res){
+	var username = req.username;
+	var sendObj;
+	User.findOne({username}, function(err, user){
+		if(err) 		res.send(err);	
+		else if(!user) 	res.send("User not found");
+
+		// gather all sentiments within a week from today
+		var sentimentsArray   = user.sentiments
+		var sentimentsAverage = 0;
+
+		sentimentsArray.map(function(elem){
+			sentimentsAverage += elem;
+		});
+		sendObj = 
+		[
+			["tone", sentimentsAverage]
+		];
+
+		res.send(sendObj);
+
+	});
+});
+
+// tone week
+router.get('/users/:username/tone/week', function(req, res){
+	var username = req.username;
+	var sendObj;
+	User.findOne({username}, function(err, user){
+		if(err) 		res.send(err);	
+		else if(!user) 	res.send("User not found");
+
+		// gather all sentiments within a week from today
+		var sentimentsArray   = user.sentiments
+		var sentimentsAverage = 0;
+
+// TODO logic 
+		sentimentsArray.map(function(elem){
+			sentimentsAverage += elem;
+		});
+		sendObj = 
+		[
+			["tone", sentimentsAverage]
+		];
+
+		res.send(sendObj);
+
+	});
+});
+
+// tone month
+router.get('/users/:username/tone/month', function(req, res){
+	var username = req.username;
+	var sendObj;
+	User.findOne({username}, function(err, user){
+		if(err) 		res.send(err);	
+		else if(!user) 	res.send("User not found");
+
+		// gather all sentiments within a week from today
+		var sentimentsArray   = user.sentiments;
+		var sentimentsAverage = 0;
+
+// TODO logic
+		sentimentsArray.map(function(elem){
+			sentimentsAverage += elem;
+		});
+
+
+		sendObj = 
+		[
+			["tone", sentimentsAverage]
+		];
+
+		res.send(sendObj);
+
+	});
+});
+
+//done
+
+//curl -H "Content-Type: application/json" -X PUT -d '{}' http://localhost:3000/users/swear/brett
+
+router.put('/swear/:username/', function(req, res){
+	var username = req.username;
+	User.findOne({username}, function(err, user){
+		if(err) 		res.send(err);	
+		else if(!user) 	res.send("User not found");
+		
+		var f = new Frequency();
+		f.word = "firetruck";
+		f.value = 20;
+		f.date = new Date();
+		user.frequencies.push(f);
+
+		f.word = "kitten";
+		f.value = 10;
+		user.frequencies.push(f);
+
+		res.send({});
+
+	});
+});
+	// res.send("something");
+
+	// //bigArr has 3-tuples. we just want to send frequencies of pertinent dates
+	// bigArr = user.frequencies;
+
+	// var targetArr = [];
+
+	// bigArr.map(function(obj){
+	// 	//{word, freq, date}
+	// 	var date = obj[1]; // get the second object, Date
+
+	// 	// compare given date with TODAY
+
+	// 	// TODO - may cause issues
+	// 	var today = Date().getDay();
+	// 	if (date.getDay() == today) {
+	// 		console.log("comparing " + date.getDay() + " to " + today);
+	// 		// we found the date we were looking for
+	// 		targetArr.push({word, freq});
+	// 	}
+
+	// });
+
+	// console.log("done - ", targetArr);
 
 router.post
 module.exports = router;
