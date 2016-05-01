@@ -12,7 +12,7 @@ RECORD_SECONDS = 10
 INPUT_DEVICE = 2
 TALKING_THRESHOLD = 2000
 QUIET_FRAME_THRESHOLD = 5
-MAX_FRAMES = 60
+MAX_FRAMES = 61
 
 def writeFrames(audio, frames, index, prefix, suffix, channels, jformat, rate):
     waveFile = wave.open(prefix+str(index)+suffix, 'wb')
