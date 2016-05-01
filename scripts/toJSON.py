@@ -41,9 +41,9 @@ def main():
         jsonObj = json.dumps(wordFreq,indent=2)
         jsonObjLen = (sys.getsizeof(jsonObj))
 
-        url = 'http://www.com/users/:username/statistics'
-        headers = {'Content-length':url}
-        r = requests.post(url, headers=headers, data=jsonObj)
+        url = 'http://10.203.114.190:3000/users/test'
+        headers = {'Content-length':url, 'Content-Type':'application/json'}
+        r = requests.put(url, headers=headers, data=jsonObj)
         print(jsonObj)
 
 if __name__ == "__main__":
