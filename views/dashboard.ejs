@@ -250,86 +250,60 @@
         console.log("whatever");
 
         // freqTodayChart
-        $.getJSON("/users/" + myname + "/frequency/today").done(function(data){
-            console.log(data);
-            // freqTodayChart.load({
-            //   data: data                
-                // columns: [
-                //     [ 'pizza', '67' ],
-                //     [ 'trees', '34' ],
-                //     [ 'fish', '30' ],
-                //     [ 'lingerie', '22' ],
-                //     [ 'shark', '17' ]
-                //     ],
-            //     unload: freqTodayChart.columns,
-            // });
+        $.getJSON("/users/users/" + myname + "/frequency/today").done(function(data){
+           console.log(data);
+            freqTodayChart.load({
+                columns: data,
+                unload: freqTodayChart.columns
+            });
          });
 
         // freqWeekChart
-        $.getJSON("/users/" + myname + "/frequency/week").done(function(data){
+        $.getJSON("/users/users/" + myname + "/frequency/week").done(function(data){
             console.log(data);
             freqWeekChart.load({
-                columns: [
-                    ['data1', data[0]],
-                    ['data4', data[1]],
-                ],
+                columns: data,
                 unload: freqWeekChart.columns,
             });
           });
         
 
-        // toneGaugeTodayChart
-        $.getJSON("/users/" + myname + "/tone/today").done(function(data){
+        //toneGaugeTodayChart
+        $.getJSON("/users/users/" + myname + "/tone/today").done(function(data){
             console.log(data);
-            // postprocess data if u want
-            chart4.load({
-                columns: [
-                    ['data1', data[0]],
-                    ['data4', data[1]],
-                ],
-                unload: ['data2', 'data3'],
+            toneGaugeTodayChart.load({
+                columns: data,
+                unload: toneGaugeTodayChart.columns
             });
           });
        
 
         // toneGaugeWeekChart
-        $.getJSON("/users/" + myname + "/tone/week").done(function(data){
+        $.getJSON("/users/users/" + myname + "/tone/week").done(function(data){
             console.log(data);
-            // postprocess data if u want
-            chart4.load({
-                columns: [
-                    ['data1', data[0]],
-                    ['data4', data[1]],
-                ],
-                unload: ['data2', 'data3'],
+            toneGaugeWeekChart.load({
+                columns: data,
+                unload: toneGaugeWeekChart.columns
             });
           });
         
 
         // toneGaugeMonthChart
-        $.getJSON("/users/" + myname + "/tone/month").done(function(data){
+        $.getJSON("/users/users/" + myname + "/tone/month").done(function(data){
             console.log(data);
-            // postprocess data if u want
-            chart4.load({
-                columns: [
-                    ['data1', data[0]],
-                    ['data4', data[1]],
-                ],
-                unload: ['data2', 'data3'],
+            toneGaugeMonthChart.load({
+                columns: data,
+                unload: toneGaugeMonthChart.columns
             });
           });
         
 
         // chart4
-        $.getJSON("/users/" + myname + "/frequency/data").done(function(data){
+        $.getJSON("/users/users/" + myname + "/tone/month").done(function(data){
             console.log(data);
-            // postprocess data if u want
-            chart4.load({
-                columns: [
-                    ['data1', data[0]],
-                    ['data4', data[1]],
-                ],
-                unload: ['data2', 'data3'],
+            toneGaugeMonthChart.load({
+                columns: data,
+                unload: toneGaugeMonthChart.columns
             });
           });
       };
