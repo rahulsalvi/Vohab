@@ -1,4 +1,5 @@
 from textAnalytics import getSentiment
+import requests
 import json
 import sys
 import time
@@ -38,6 +39,11 @@ def main():
 
         # Converting to JSON Object
         jsonObj = json.dumps(wordFreq,indent=2)
+        jsonObjLen = (sys.getsizeof(jsonObj))
+
+        url = 'http://www.com/users/:username/statistics'
+        headers = {'Content-length':url}
+        r = requests.post(url, headers=headers, data=jsonObj)
         print(jsonObj)
 
 if __name__ == "__main__":
