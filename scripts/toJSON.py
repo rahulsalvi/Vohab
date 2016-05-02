@@ -40,8 +40,8 @@ def main():
         # Converting to JSON Object
         jsonObj = json.dumps(wordFreq,indent=2)
 
-        # url = 'http://23.96.245.34:8080/users/users/brett/statistics'
-        url = 'http://10.203.114.190:3000/users/users/brett/statistics'
+        url = 'http://23.96.245.34:8080/users/users/brett/statistics'
+        # url = 'http://10.203.114.190:3000/users/users/brett/statistics'
         headers = {'Content-length':url, 'Content-Type':'application/json'}
         r = requests.put(url, headers=headers, data=jsonObj)
         print(jsonObj)

@@ -3,7 +3,7 @@ import os
 import sys
 import time
 
-NUM_FILES_TO_AGGREGATE = 2
+NUM_FILES_TO_AGGREGATE = 1
 
 def main():
     #Note: Sign up at http://www.projectoxford.ai to get a subscription key.
@@ -42,14 +42,14 @@ def main():
     #parser.add_argument("wav file",metavar='FILE',type=argparse.FileType('r'))
     # parser.add_argument('wavfile')
     # filename = parser.parse_args()
-    print("Beginning main loop")
+    #print("Beginning main loop")
     wavFilesProcessed = 0
     index = 0
     aggregatedTranscripts = ""
     for filename in sys.stdin:
         time.sleep(1)
         filename = filename.rstrip()
-        print("recordings/" + filename)
+    #    print("recordings/" + filename)
 
         # Read the binary from wave file
         f = open("recordings/" + filename,'rb')
